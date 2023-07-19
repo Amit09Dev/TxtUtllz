@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import TextForm from './components/TextForm'
 import Alert from './components/Alert'
 import About from './components/About'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 const [mode, setMode] = useState('dark');
@@ -42,10 +43,14 @@ const toggleMode = ()=>{
 }
   return (
     <>
-    <Navbar title='TexUtilz' mode={mode} toggleMode={toggleMode} modeText={modeText}/>
-    <Alert alert={alert}/>
-    <TextForm heading='Enter text to analyse' alert={alert} mode={mode} showTheAlert={showTheAlert}/>
-    <About/>
+    <BrowserRouter>
+      <Navbar title='TexUtilz' mode={mode} toggleMode={toggleMode} modeText={modeText}/>
+      <Alert alert={alert}/>
+      <Routes>
+        <Route path='/*' element={<TextForm heading='Enter text to analyse' alert={alert} mode={mode} showTheAlert={showTheAlert}/>}/>
+        <Route path='about' element={<About mode={mode} />}/>
+     </Routes>
+    </BrowserRouter>
     </>
   )
 }

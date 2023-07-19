@@ -1,41 +1,15 @@
-import { useState } from "react"
-
-export default function About(){
-
-const [btnText, setBtnText] = useState('Enable Dark mode')
-
-const [myStyle, setMyStyle] = useState({
-    color: 'black',
-    backgroundColor: 'white'  
-
-})
+import PropTypes from 'prop-types'
 
 
-const toggleMode = ()=>{
-    if(myStyle.color === 'black'){
-        setMyStyle({
-            color: 'white',
-            backgroundColor: '#212529',
-        })
-        setBtnText('Enable Light Mode')
-    }
-        else{
-            setMyStyle({
-                color: 'black',
-                backgroundColor: 'white'
-            })
-        setBtnText('Enable Dark Mode')
-        }
-
-}
+export default function About(props){
 
     return (
-        <div className="container mt-4 p-5" style={myStyle}>
+        <div className="container mt-4 p-5" style={{color: props.mode === 'light' ? 'dark' : 'light'}}>
             <h3>About Us</h3>
           <div className="accordion" id="accordionExample" >
-            <div className="accordion-item" style={myStyle}>
+            <div className="accordion-item" style={{backgroundColor: props.mode === 'light' ? 'white' : '#212529', color: props.mode === 'light' ? 'black' : 'white'}}>
                 <h2 className="accordion-header">
-                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style={myStyle}>
+                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style={{backgroundColor: props.mode === 'light' ? 'white' : '#212529', color: props.mode === 'light' ? 'black' : 'white'}}>
                     Accordion Item #1
                 </button>
                 </h2>
@@ -45,9 +19,9 @@ const toggleMode = ()=>{
                 </div>
                 </div>
             </div>
-            <div className="accordion-item" style={myStyle}>
+            <div className="accordion-item" style={{backgroundColor: props.mode === 'light' ? 'white' : '#212529', color: props.mode === 'light' ? 'black' : 'white'}}>
                 <h2 className="accordion-header">
-                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style={myStyle}>
+                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style={{backgroundColor: props.mode === 'light' ? 'white' : '#212529', color: props.mode === 'light' ? 'black' : 'white'}}>
                     Accordion Item #2
                 </button>
                 </h2>
@@ -57,9 +31,9 @@ const toggleMode = ()=>{
                 </div>
                 </div>
             </div>
-            <div className="accordion-item" style={myStyle}>
+            <div className="accordion-item" style={{backgroundColor: props.mode === 'light' ? 'white' : '#212529', color: props.mode === 'light' ? 'black' : 'white'}}>
                 <h2 className="accordion-header">
-                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style={myStyle}>
+                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style={{backgroundColor: props.mode === 'light' ? 'white' : '#212529', color: props.mode === 'light' ? 'black' : 'white'}}>
                     Accordion Item #3
                 </button>
                 </h2>
@@ -70,7 +44,10 @@ const toggleMode = ()=>{
                 </div>
             </div>
             </div>
-            <button className="btn btn-success mt-3" onClick={toggleMode}>{btnText} </button>
         </div>
     )
+}
+
+About.propTypes = {
+    mode: PropTypes.string
 }
