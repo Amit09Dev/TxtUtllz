@@ -25,9 +25,7 @@ const [text, setText] = useState('');
     }
 
     const copyTextClick = ()=>{
-        const inputElement = document.getElementById('textarea');
-        const textToCopy = inputElement.value;
-        navigator.clipboard.writeText(textToCopy)
+        navigator.clipboard.writeText(text)
         props.showTheAlert('Text copied', 'success')
    }
 
@@ -43,7 +41,7 @@ const [text, setText] = useState('');
     }
 
     const characterCount = text.replace(/\s/g, '').length
-    const wordCounter = text.split(' ').filter((element) =>{return element.length !== 0}).length
+    const wordCounter = text.split(/\s+/).filter((element) =>{return element.length !== 0}).length
  
 
 
